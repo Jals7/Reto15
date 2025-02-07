@@ -1,0 +1,45 @@
+@startuml DiagramaDeTurnOnDevices
+
+class TurnOnDevices{
+    +main(String args[])
+    +turnOnDevice(Connectable device)
+}
+
+class Connectable <<interface>>{
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class Lamp{
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class Computer{
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+class CoffeMaker{
+    +on()
+    +off()
+    +isOff()
+}
+
+class CoffeMakerAdapter <<Adapter>>{
+    -CoffeMaker coffeMaker
+    +CoffeMakerAdapter(CoffeMaker coffeMaker)
+    +turnOn()
+    +turnOff()
+    +isOn()
+}
+
+TurnOnDevices -> Connectable
+Lamp --|> Connectable
+Computer --|> Connectable
+CoffeMakerAdapter --|> Connectable
+CoffeMaker --> CoffeMakerAdapter
+@enduml
